@@ -46,7 +46,8 @@ nav a.link:hover{color:var(--text)}
 /* hero */
 .hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;overflow:hidden;padding:130px 0 100px}
 .hero .wrap{width:100%;position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
-.hero h1{font-size:clamp(40px,4.8vw,62px);line-height:1.04;max-width:11em}
+.hero h1{font-size:clamp(58px,7.4vw,92px);line-height:1.02;letter-spacing:-.02em}
+.hero h1 span{display:block}
 .hero-copy p{font-size:clamp(18px,2vw,21px);color:var(--text-muted);max-width:29em;margin-top:28px}
 .hero-copy .btn{margin-top:44px}
 @media (max-width:900px){.hero-copy .btn{display:flex;width:fit-content;margin-left:auto;margin-right:auto}}
@@ -216,7 +217,7 @@ footer img{height:22px;display:block}
   <div class="afterglow"></div>
   <div class="wrap">
     <div class="hero-copy" id="heroCopy">
-      <h1>Hold, talk, let go. The session note is written.</h1>
+      <h1><span>Hold.</span><span>Talk.</span><span>Let go.</span></h1>
       <p>A one-minute voice note becomes a finished session note, written to your spa's standard.</p>
       <a class="btn" href="#talk">Book a 20-minute call</a>
     </div>
