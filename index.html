@@ -49,15 +49,21 @@ nav a.link:hover{color:var(--text)}
 .hero h1{font-size:clamp(40px,4.8vw,62px);line-height:1.04;max-width:11em}
 .hero-copy p{font-size:clamp(18px,2vw,21px);color:var(--text-muted);max-width:29em;margin-top:28px}
 .hero-copy .btn{margin-top:44px}
-.hero-copy,.scene{will-change:transform,opacity}
+@media (max-width:900px){.hero-copy .btn{display:flex;width:fit-content;margin-left:auto;margin-right:auto}}
+.hero-copy,.demo{will-change:transform,opacity}
 @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-bottom:56px}.scene-ribbon{left:-20%!important;right:-20%!important}}
 
 /* the app, as a working demo */
-.scene{position:relative;height:610px}
-@media (max-width:900px){.scene{margin-top:28px}}
+.scene{position:relative;height:610px;--pc:44%}
 .scene-ribbon{position:absolute;left:-6%;right:-30%;top:46%;height:150px;transform:translateY(-50%);pointer-events:none}
-.phone{position:absolute;left:44%;top:0;transform:translateX(-50%);width:272px;height:548px;border-radius:44px;background:#030f2b;border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(246,248,253,.08),0 0 0 8px #061331,0 0 0 9px var(--line);padding:16px 16px 0;display:flex;flex-direction:column;overflow:hidden;--lvl:0}
-@media (max-width:900px){.phone{left:50%}}
+.phone{position:absolute;left:var(--pc);top:0;transform:translateX(-50%);width:272px;height:548px;border-radius:44px;background:#030f2b;border:1px solid var(--line);box-shadow:inset 0 1px 0 rgba(246,248,253,.08),0 0 0 8px #061331,0 0 0 9px var(--line);padding:16px 16px 0;display:flex;flex-direction:column;overflow:hidden;--lvl:0}
+@media (max-width:900px){.scene{--pc:50%}}
+.tryme{position:absolute;left:calc(var(--pc) + 47px);top:308px;width:0;height:0;pointer-events:none;z-index:3;animation:nudge 1.3s ease-in-out infinite;transition:opacity .25s,visibility .25s}
+.tryme svg{position:absolute;left:-32px;top:0;width:64px;overflow:visible;transform-origin:50% 0;transform:rotate(-45deg);filter:drop-shadow(0 0 12px rgba(80,242,252,.55))}
+.tryme span{position:absolute;left:38px;top:62px;white-space:nowrap;font:700 20px/1 var(--font-display);color:var(--on-spark);background:var(--spark);padding:9px 15px;border-radius:999px;box-shadow:var(--glow-spark)}
+@media (max-width:520px){.tryme span{left:18px;top:64px;font-size:19px}}
+.tried .tryme{opacity:0;visibility:hidden}
+@keyframes nudge{50%{transform:translate(8px,8px)}}
 .phone .notch{width:84px;height:22px;border-radius:12px;background:#000a21;margin:0 auto 10px;flex:none}
 .p-head{display:flex;justify-content:space-between;align-items:center;height:26px;flex:none;padding:0 4px}
 .p-head img{height:15px;display:block}
@@ -108,23 +114,25 @@ nav a.link:hover{color:var(--text)}
 .result .cp{margin-top:14px;display:inline-flex;height:28px;align-items:center;padding:0 13px;border-radius:999px;border:1px solid var(--control-border);font:600 11.5px/1 var(--font-sans)}
 .result.wait{opacity:0;transform:translateY(14px)}
 @media (max-width:520px){.result{right:-6px;width:222px}}
-.demo-hint{position:absolute;left:calc(44% - 136px);top:572px;width:calc(56% - 136px);min-width:110px;font-size:13px;line-height:1.4;color:var(--text-muted)}
-@media (max-width:900px){.scene{height:640px}.demo-hint{left:0;width:calc(100% - 262px)}}
-@media (max-width:520px){.demo-hint{width:calc(100% - 232px)}}
+.try{width:340px;max-width:100%;margin:0 0 26px calc(44% - 170px);text-align:center;position:relative;z-index:1}
+.try-title{font:600 26px/1.15 var(--font-display);letter-spacing:-.01em}
+.try-note{font-size:14px;line-height:1.45;color:var(--text-muted);margin-top:8px}
+@media (max-width:900px){.demo{margin-top:36px}.try{margin-left:auto;margin-right:auto}}
 
 /* sections */
 .sec{padding:140px 0}
 .label{display:inline-flex;align-items:center;gap:10px;font:600 14px/1 var(--font-sans);color:var(--text-muted);margin-bottom:28px}
 h2{font-size:clamp(32px,4.2vw,48px);line-height:1.12;max-width:16em}
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;margin-top:72px;list-style:none;padding:0}
-.three h3{font-size:22px;font-weight:600;margin-bottom:12px}
-.three p{color:var(--text-muted);font-size:16px}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:56px;margin:0;list-style:none;padding:0}
+.three h3{font-size:26px;font-weight:600;margin-bottom:12px}
+.three p{color:var(--text-muted);font-size:17px}
 .three .n{color:var(--spark-text);font-variant-numeric:tabular-nums;margin-right:.35em}
-@media (max-width:820px){.three{grid-template-columns:1fr;gap:40px}}
+@media (max-width:820px){.three{grid-template-columns:1fr;gap:36px}}
 .ill{position:relative;height:170px;border-radius:20px;background:var(--surface);border:1px solid var(--line);margin-bottom:28px;overflow:hidden;display:grid;place-items:center;box-shadow:inset 0 1px 0 rgba(246,248,253,.05)}
 .ill .glow{position:absolute;inset:0;background:radial-gradient(220px 120px at 50% 110%,rgba(80,242,252,.14),transparent 70%)}
 .ill-row{display:flex;align-items:center;gap:14px;position:relative}
-.ill .vbub{border:0;border-radius:18px 18px 6px 18px;padding:9px 12px 9px 9px}
+.ill .vbub{position:relative;border:0;border-radius:18px 18px 6px 18px;padding:9px 14px 9px 9px}
+.ill .mininote{position:relative;width:120px;padding:14px}
 .ill .bars{flex:none}
 .arrow{width:34px;height:2px;background:linear-gradient(90deg,#50f2fc,#81a6fd);border-radius:2px;position:relative;box-shadow:0 0 8px rgba(80,242,252,.5)}
 .arrow::after{content:"";position:absolute;right:-1px;top:-4px;border-left:7px solid #81a6fd;border-top:5px solid transparent;border-bottom:5px solid transparent}
@@ -154,7 +162,7 @@ h2{font-size:clamp(32px,4.2vw,48px);line-height:1.12;max-width:16em}
 .about p.q2{font:400 19px/1.6 var(--font-sans);color:var(--text-muted);margin-top:24px;max-width:32em}
 .about p.sig{font:500 16px/1.5 var(--font-sans);color:var(--text-muted);margin-top:32px}
 
-.cta{text-align:center;overflow:hidden;padding:160px 0 220px}
+.cta{text-align:center;overflow:hidden;padding:120px 0 220px}
 .cta h2{margin:0 auto}
 .cta p{color:var(--text-muted);margin-top:20px}
 .cta p a{font-weight:600}
@@ -163,6 +171,7 @@ h2{font-size:clamp(32px,4.2vw,48px);line-height:1.12;max-width:16em}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:40px;padding-bottom:40px;border-top:1px solid var(--line);font-size:14px;color:var(--text-muted)}
 footer img{height:22px;display:block}
 
+@media (max-width:820px){.ill{height:116px;margin-bottom:18px}.minirec{width:58px;height:58px}}
 /* light band */
 .light{--bg:#f5f7fc;--surface:#ffffff;--surface-raised:#eaf0fa;--line:#d6deec;--text:#000a21;--text-muted:#4b5a7a;--spark-text:#00758c;--spark-soft:#e3f8fc;--control-border:#6a8295;
   position:relative;color:var(--text);--open:1;isolation:isolate}
@@ -179,7 +188,7 @@ footer img{height:22px;display:block}
 .light .mininote i:first-child{background:var(--spark)}
 .light .note{background:linear-gradient(#fff,#fff) padding-box,linear-gradient(100deg,#50f2fc,#2adefe 45%,#81a6fd) border-box;box-shadow:0 10px 40px rgba(0,10,33,.06)}
 .light .spark{box-shadow:0 0 0 3px rgba(80,242,252,.18)}
-.light .sec{padding:120px 0}
+.light .sec{padding:110px 0}
 
 /* motion */
 .ribbon .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.3,.7,.2,1)}
@@ -208,10 +217,12 @@ footer img{height:22px;display:block}
   <div class="wrap">
     <div class="hero-copy" id="heroCopy">
       <h1>Hold, talk, let go. The session note is written.</h1>
-      <p>Notes Anywhere turns a therapist's one-minute voice note into a finished session note, written to your spa's standard.</p>
+      <p>A one-minute voice note becomes a finished session note, written to your spa's standard.</p>
       <a class="btn" href="#talk">Book a 20-minute call</a>
     </div>
-    <div class="scene" id="scene">
+    <div class="demo" id="scene">
+    <div class="try"><p class="try-title">Try it below!</p><p class="try-note">Press and hold the button. It's a demo, so nothing is recorded or sent.</p></div>
+    <div class="scene">
       <div class="scene-ribbon ribbon" data-flow="1" data-ribbon='{"h":150,"amp":34,"waves":1.6,"phase":2.4,"stroke":11}'></div>
       <div class="phone" id="phone" data-state="idle">
         <div class="notch"></div>
@@ -236,12 +247,13 @@ footer img{height:22px;display:block}
           <div class="p-row"><p class="when">Today, 11:20 AM</p><div class="vbub"><span class="pl"></span><span class="bars" data-bars="b"></span><small>0:52</small></div></div>
         </div>
       </div>
-      <p class="demo-hint">Demo: press and hold the button. Nothing is recorded.</p>
+      <div class="tryme" aria-hidden="true"><svg viewBox="0 0 60 70"><defs><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#50f2fc"/><stop offset="1" stop-color="#81a6fd"/></linearGradient></defs><path d="M30 2 L58 36 L45 36 L45 68 L15 68 L15 36 L2 36 Z" fill="url(#tg)" stroke="url(#tg)" stroke-width="4" stroke-linejoin="round"/></svg><span>Try Me!</span></div>
       <div class="note result" id="result">
         <div class="top"><span>Session note</span><span><span class="spark"></span>Ready</span></div>
         <dl><dt>Service</dt><dd>Deep tissue, 90 min</dd><dt>Focus</dt><dd>Right trap, levator</dd><dt>Pressure</dt><dd>Firm, comfortable</dd><dt>Home care</dt><dd>Neck stretches</dd></dl>
         <span class="cp">Copy note</span>
       </div>
+    </div>
     </div>
   </div>
 </section>
@@ -249,55 +261,19 @@ footer img{height:22px;display:block}
 <div class="light" id="light"><div class="lbg" aria-hidden="true"></div>
 <section class="sec">
   <div class="wrap">
-    <h2 class="reveal">A minute of talking replaces the typing.</h2>
     <ol class="three">
-      <li class="reveal"><div class="ill" aria-hidden="true"><div class="glow"></div><div class="minirec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></div></div><h3><span class="n">1.</span>Hold and talk</h3><p>After a session, the therapist holds one button on their phone and says what happened, in their own words.</p></li>
-      <li class="reveal"><div class="ill" aria-hidden="true"><div class="glow"></div><div class="ill-row"><div class="vbub"><span class="pl"></span><span class="bars" data-bars="s"></span></div><span class="arrow"></span><div class="mininote"><i></i><i></i><i></i><i></i></div></div></div><h3><span class="n">2.</span>The note is written</h3><p>Seconds later a finished note comes back, in the format and wording your spa expects.</p></li>
-      <li class="reveal"><div class="ill" aria-hidden="true"><div class="glow"></div><div class="ill-row"><div class="mininote"><i></i><i></i><i></i><i></i></div><span class="arrow"></span><span class="pill"><i></i>Guest record</span></div></div><h3><span class="n">3.</span>Copy and paste</h3><p>The therapist checks it, then pastes it into the guest record you already keep. Nothing new to learn.</p></li>
+      <li class="reveal"><div class="ill" aria-hidden="true"><div class="glow"></div><div class="minirec"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="12" rx="3" fill="currentColor"/><path d="M5 11a7 7 0 0 0 14 0M12 18v4"/></svg></div></div><h3><span class="n">1.</span>Hold</h3><p>Press one button when the session ends.</p></li>
+      <li class="reveal"><div class="ill" aria-hidden="true"><div class="glow"></div><div class="vbub"><span class="pl"></span><span class="bars" data-bars="s"></span></div></div><h3><span class="n">2.</span>Talk</h3><p>Say what happened, in your own words.</p></li>
+      <li class="reveal"><div class="ill" aria-hidden="true"><div class="glow"></div><div class="mininote"><i></i><i></i><i></i><i></i></div></div><h3><span class="n">3.</span>Let go</h3><p>A finished note comes back in seconds, formatted to your spa's requirements.</p></li>
     </ol>
-  </div>
-</section>
-
-<section class="sec" style="padding-top:40px">
-  <div class="wrap example">
-    <div class="reveal">
-      <div class="label"><span class="spark"></span>In use today</div>
-      <h2>A voice memo in. A five-star note out.</h2>
-      <p class="lead">Therapists at a Forbes Five-Star resort spa have used it for the better part of a year. They speak for a minute; a finished note comes back in seconds.</p>
-    </div>
-    <div class="note reveal">
-      <div class="top"><span>Session note</span><span><span class="spark"></span>12 sec</span></div>
-      <dl>
-        <dt>Service</dt><dd>Deep tissue, 90 min</dd>
-        <dt>Focus</dt><dd>Right upper trapezius, levator scapulae</dd>
-        <dt>Pressure</dt><dd>Firm; guest comfortable</dd>
-        <dt>Home care</dt><dd>Neck stretches at work</dd>
-      </dl>
-    </div>
   </div>
 </section>
 </div>
 
-<section class="sec setup">
-  <div class="wrap">
-    <h2 class="reveal">Set up around your spa, not the other way round.</h2>
-    <dl class="reveal">
-      <dt>Your standard</dt><dd>We write the note format with you: the sections, the wording and the level of detail your spa asks for.</dd>
-      <dt>One training session</dt><dd>About an hour with your team. If they can send a voice message, they can use it.</dd>
-      <dt>A contact on your team</dt><dd>We train one person on your staff to handle everyday questions, so help is down the hall.</dd>
-      <dt>More than one department</dt><dd>Each department gets its own note format, so the same tool works beyond the treatment rooms.</dd>
-    </dl>
-    <p class="more reveal">Notes are where we start. If your team types the same thing twice anywhere else, we can probably fix that too.</p>
-  </div>
-</section>
-
-<section class="sec" style="padding-top:20px">
+<section class="sec">
   <div class="wrap about reveal"><div>
-    <blockquote>
-      <p>“Every second counts and this app has allowed me the opportunity to be more successful at not just completing my notes, but leaving more detailed notes!”</p>
-      <p class="q2">“It’s so quick and I don’t forget anything. … It also organizes everything that I say into individual categories, so it’s easy to reference the next time!”</p>
-    </blockquote>
-    <p class="sig">Tiffany, Senior Therapist</p>
+    <blockquote><p>“Every second counts and this app has allowed me the opportunity to be more successful at not just completing my notes, but leaving more detailed notes!”</p></blockquote>
+    <p class="sig">Tiffany, Senior Therapist<br>Forbes Five-Star Resort Spa</p>
   </div></div>
 </section>
 
@@ -306,7 +282,7 @@ footer img{height:22px;display:block}
   <div class="cta-ribbon ribbon" data-ribbon='{"h":130,"amp":28,"waves":1.2,"phase":3.6,"stroke":10}'></div>
   <div class="wrap" style="position:relative">
     <h2 class="reveal">See it write a note for your spa.</h2>
-    <p class="reveal">Twenty minutes, on a call. Email <a href="mailto:hello@tidewire.ai">hello@tidewire.ai</a> and we'll find a time.</p>
+    <p class="reveal"><a href="mailto:hello@tidewire.ai">hello@tidewire.ai</a></p>
     <a class="btn reveal" href="mailto:hello@tidewire.ai?subject=Notes%20Anywhere%20call">Email to book a call</a>
   </div>
 </section>
@@ -335,7 +311,8 @@ footer img{height:22px;display:block}
 
   /* the hero demo: same states as the real app, nothing recorded */
   var phone=document.getElementById('phone'),rec=document.getElementById('rec'),title=document.getElementById('pTitle'),sub=document.getElementById('pSub'),hist=document.getElementById('pHist'),result=document.getElementById('result');
-  var touched=false,t0=0,tick=null,timers=[];
+  var t0=0,tick=null,timers=[];
+  function tried(){var s=phone.parentNode;if(s)s.classList.add('tried');}
   function later(fn,ms){timers.push(setTimeout(fn,ms));}
   function clearAll(){timers.forEach(clearTimeout);timers=[];if(tick){clearInterval(tick);tick=null;}}
   function fmt(s){return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}
@@ -350,13 +327,12 @@ footer img{height:22px;display:block}
       var row=document.createElement('div');row.className='p-row new';row.innerHTML='<p class="when">Just now</p><div class="vbub"><span class="pl"></span><span class="bars"></span><small>'+fmt(Math.max(secs,1))+'</small></div>';fillBars(row.querySelector('.bars'),BARS.n);hist.insertBefore(row,hist.firstChild);while(hist.children.length>3)hist.removeChild(hist.lastChild);
       result.classList.remove('wait');later(idle,4200);},1300);}
   if(rec){
-    rec.addEventListener('pointerdown',function(e){e.preventDefault();touched=true;if(phone.dataset.state==='sending')return;try{rec.setPointerCapture(e.pointerId);}catch(_){}start(false);});
+    rec.addEventListener('pointerdown',function(e){e.preventDefault();tried();if(phone.dataset.state==='sending')return;try{rec.setPointerCapture(e.pointerId);}catch(_){}start(false);});
     ['pointerup','pointercancel'].forEach(function(ev){rec.addEventListener(ev,function(){stop(false);});});
     rec.addEventListener('contextmenu',function(e){e.preventDefault();});
-    rec.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();touched=true;if(phone.dataset.state!=='sending')start(false);}});
+    rec.addEventListener('keydown',function(e){if((e.key===' '||e.key==='Enter')&&!e.repeat){e.preventDefault();tried();if(phone.dataset.state!=='sending')start(false);}});
     rec.addEventListener('keyup',function(e){if(e.key===' '||e.key==='Enter'){e.preventDefault();stop(false);}});
-    /* play it once on load so the page explains itself */
-    if(!reduce){result.classList.add('wait');later(function(){if(touched)return;start(true);later(function(){if(!touched)stop(true);},2600);},1400);}
+    result.classList.add('wait');
   }
 
   var els=document.querySelectorAll('.reveal,.ribbon');
