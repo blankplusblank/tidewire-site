@@ -355,21 +355,26 @@ footer .fl a:hover{color:var(--text)}
   /* place the spa photo so its phone sits on .slot, and fade it into the page at its edges */
   var stage=document.getElementById('stage'),stageIn=document.getElementById('stageIn'),photo=stageIn&&stageIn.querySelector('.stage-photo'),slot=document.getElementById('slot'),heroEl=document.querySelector('.hero'),copyEl=document.getElementById('heroCopy');
   var PH={w:1456,h:832,cx:711,cy:438,frameH:453,frameW:222};
+  /* on a phone the photo is shown zoomed out (MOBILE_VIEW photo pixels across) so the phone reads in its setting */
+  var MOBILE_VIEW=window.__heroView||820,sceneEl=stage&&stage.parentNode;
   function place(){if(!stage||!slot)return;
-    var sc=stage.parentNode.getBoundingClientRect(),hr=heroEl.getBoundingClientRect(),sl=slot.getBoundingClientRect();
+    var desk=window.innerWidth>900,ms=Math.min(1.21,heroEl.getBoundingClientRect().width/MOBILE_VIEW),band=Math.round(PH.h*ms);
+    var want=desk?'':band+'px';if(sceneEl.style.height!==want)sceneEl.style.height=want;
+    var sc=sceneEl.getBoundingClientRect(),hr=heroEl.getBoundingClientRect(),sl=slot.getBoundingClientRect();
     var W=hr.width,H=hr.height,ox=hr.left-sc.left,oy=hr.top-sc.top;
     stage.style.left=ox+'px';stage.style.top=oy+'px';stage.style.width=W+'px';stage.style.height=H+'px';
     var cx=sl.left-hr.left+sl.width/2,cy=sl.top-hr.top+sl.height/2,s=sl.height/PH.frameH;
+    if(!desk){s=ms;cx=W/2;cy=sc.top-hr.top+band/2+(PH.cy-PH.h/2)*s;}
     var tx=cx-PH.cx*s,ty=cy-PH.cy*s;
     stageIn.style.transform='translate('+tx.toFixed(2)+'px,'+ty.toFixed(2)+'px) scale('+s.toFixed(4)+')';
     function nx(x){return ((x-tx)/s).toFixed(1)+'px';}function ny(y){return ((y-ty)/s).toFixed(1)+'px';}
-    var desk=window.innerWidth>900,m={};
+    var m={};
     var pl=Math.max(0,tx),pr=Math.min(W,tx+PH.w*s),pt=Math.max(0,ty),pb=Math.min(H,ty+PH.h*s);
     if(desk){var cr=copyEl.getBoundingClientRect().right-hr.left,fl=cx-PH.frameW/2*s,e1=pl>0?pl+260:pl;
       var l0=Math.max(e1,cr+10),l1=Math.max(l0+120,fl-30);
       m={ea:pl>0?0:.12,la:.12,e0:pl,e1:e1,l0:l0,l1:l1,r1:pr<W?pr-160:PH.w*s+tx,r0:pr<W?pr:PH.w*s+tx,ta:pt>0?0:.3,t0:pt,t1:pt+170,b1:pb-150,b0:pb};}
-    else{var top=sl.top-hr.top,bot=sl.bottom-hr.top,t0=Math.max(pt,top-70),b0=Math.min(pb,bot+100);
-      m={ea:1,la:1,e0:pl,e1:pl,l0:pl,l1:pl,r1:pr,r0:pr,ta:0,t0:t0,t1:t0+80,b1:b0-90,b0:b0};}
+    else{var t0=Math.max(pt,sc.top-hr.top),b0=Math.min(pb,sc.bottom-hr.top);
+      m={ea:1,la:1,e0:pl,e1:pl,l0:pl,l1:pl,r1:pr,r0:pr,ta:0,t0:t0,t1:t0+60,b1:b0-60,b0:b0};}
     photo.style.setProperty('--ea',m.ea);photo.style.setProperty('--la',m.la);photo.style.setProperty('--ta',m.ta);
     ['e0','e1','l0','l1','r1','r0'].forEach(function(k){photo.style.setProperty('--'+k,nx(m[k]));});
     ['t0','t1','b1','b0'].forEach(function(k){photo.style.setProperty('--'+k,ny(m[k]));});
