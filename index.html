@@ -53,6 +53,7 @@ nav a.link:hover{color:var(--text)}
 .hero-copy .btn{margin-top:44px}
 @media (max-width:900px){.hero-copy .btn{display:flex;width:fit-content;margin-left:auto;margin-right:auto}}
 .hero-copy{will-change:transform,opacity;position:relative;z-index:2}
+.hero-copy::before{content:"";position:absolute;inset:-90px -150px;z-index:-1;pointer-events:none;background:radial-gradient(closest-side,rgba(0,10,33,.82),rgba(0,10,33,.55) 55%,rgba(0,10,33,0))}
 @media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-bottom:0}}
 
 /* the app, as a working demo */
@@ -63,7 +64,7 @@ nav a.link:hover{color:var(--text)}
 .stage{position:absolute;left:0;top:0;width:0;height:0;z-index:0;pointer-events:none;overflow:hidden}
 .stage-in{position:absolute;left:0;top:0;width:1456px;height:832px;transform-origin:0 0;visibility:hidden}
 .stage.ready .stage-in{visibility:visible}
-.stage-photo{position:absolute;inset:0;width:1456px;height:832px;max-width:none;display:block;
+.stage-photo{position:absolute;inset:0;width:1456px;height:832px;max-width:none;display:block;filter:brightness(1.38) saturate(1.06);
   -webkit-mask-image:linear-gradient(to right,rgba(0,0,0,var(--ea,1)) var(--e0,0px),rgba(0,0,0,var(--la,1)) var(--e1,0px),rgba(0,0,0,var(--la,1)) var(--l0,0px),#000 var(--l1,0px),#000 var(--r1,1456px),transparent var(--r0,1456px)),linear-gradient(to bottom,rgba(0,0,0,var(--ta,1)) var(--t0,0px),#000 var(--t1,0px),#000 var(--b1,832px),transparent var(--b0,832px));
   -webkit-mask-composite:source-in;mask-image:linear-gradient(to right,rgba(0,0,0,var(--ea,1)) var(--e0,0px),rgba(0,0,0,var(--la,1)) var(--e1,0px),rgba(0,0,0,var(--la,1)) var(--l0,0px),#000 var(--l1,0px),#000 var(--r1,1456px),transparent var(--r0,1456px)),linear-gradient(to bottom,rgba(0,0,0,var(--ta,1)) var(--t0,0px),#000 var(--t1,0px),#000 var(--b1,832px),transparent var(--b0,832px));mask-composite:intersect}
 /* the photo's screen, in photo pixels; the app inside is drawn at 256 x 557 and scaled to fit */
@@ -367,7 +368,7 @@ footer .fl a:hover{color:var(--text)}
     var pl=Math.max(0,tx),pr=Math.min(W,tx+PH.w*s),pt=Math.max(0,ty),pb=Math.min(H,ty+PH.h*s);
     if(desk){var cr=copyEl.getBoundingClientRect().right-hr.left,fl=cx-PH.frameW/2*s,e1=pl>0?pl+260:pl;
       var l0=Math.max(e1,cr+10),l1=Math.max(l0+120,fl-30);
-      m={ea:pl>0?0:.12,la:.12,e0:pl,e1:e1,l0:l0,l1:l1,r1:pr<W?pr-160:PH.w*s+tx,r0:pr<W?pr:PH.w*s+tx,ta:pt>0?0:.3,t0:pt,t1:pt+170,b1:pb-150,b0:pb};}
+      m={ea:pl>0?0:.42,la:.42,e0:pl,e1:e1,l0:l0,l1:l1,r1:pr<W?pr-160:PH.w*s+tx,r0:pr<W?pr:PH.w*s+tx,ta:pt>0?0:.3,t0:pt,t1:pt+170,b1:pb-150,b0:pb};}
     else{var t0=Math.max(pt,sc.top-hr.top),b0=Math.min(pb,sc.bottom-hr.top);
       m={ea:1,la:1,e0:pl,e1:pl,l0:pl,l1:pl,r1:pr,r0:pr,ta:0,t0:t0,t1:t0+26,b1:b0-26,b0:b0};}
     photo.style.setProperty('--ea',m.ea);photo.style.setProperty('--la',m.la);photo.style.setProperty('--ta',m.ta);
