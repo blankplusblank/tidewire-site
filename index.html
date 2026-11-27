@@ -53,7 +53,7 @@ nav a.link:hover{color:var(--text)}
 .hero-copy .btn{margin-top:44px}
 @media (max-width:900px){.hero-copy .btn{display:flex;width:fit-content;margin-left:auto;margin-right:auto}}
 .hero-copy{will-change:transform,opacity;position:relative;z-index:2}
-@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-bottom:56px}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.hero{padding-bottom:0}}
 
 /* the app, as a working demo */
 .scene{position:relative;height:610px;--pc:44%}
@@ -123,11 +123,7 @@ nav a.link:hover{color:var(--text)}
 .result .cp{margin-top:14px;display:inline-flex;height:28px;align-items:center;padding:0 13px;border-radius:999px;border:1px solid var(--control-border);font:600 11.5px/1 var(--font-sans)}
 .result.wait{opacity:0;transform:translateY(14px)}
 @media (max-width:520px){.result{right:-6px;width:222px;bottom:-34px}}
-.try{width:340px;max-width:100%;margin:0 0 26px calc(44% - 170px);text-align:center;position:relative;z-index:1}
-.try-title{font:600 clamp(34px,3.6vw,42px)/1.1 var(--font-display);letter-spacing:-.015em}
-.try-note{font-size:15px;line-height:1.45;color:var(--text-muted);margin-top:10px}
-@media (min-width:901px){.try{background:rgba(0,10,33,.62);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(246,248,253,.09);border-radius:22px;padding:18px 22px 20px}.try-title{font-size:clamp(30px,3vw,36px)}}
-@media (max-width:900px){.demo{margin-top:36px}.try{margin-left:auto;margin-right:auto}}
+@media (max-width:900px){.demo{margin-top:36px}.screen{pointer-events:none}}
 
 /* sections */
 .sec{padding:140px 0}
@@ -254,7 +250,6 @@ footer .fl a:hover{color:var(--text)}
       <a class="btn" href="#talk">Book a 20-minute call</a>
     </div>
     <div class="demo" id="scene">
-    <div class="try"><p class="try-title">Try it below!</p><p class="try-note">Press and hold the button. It's a demo, so nothing is recorded or sent.</p></div>
     <div class="scene">
       <div class="stage" id="stage">
         <div class="stage-in" id="stageIn">
@@ -355,8 +350,8 @@ footer .fl a:hover{color:var(--text)}
   /* place the spa photo so its phone sits on .slot, and fade it into the page at its edges */
   var stage=document.getElementById('stage'),stageIn=document.getElementById('stageIn'),photo=stageIn&&stageIn.querySelector('.stage-photo'),slot=document.getElementById('slot'),heroEl=document.querySelector('.hero'),copyEl=document.getElementById('heroCopy');
   var PH={w:1456,h:832,cx:711,cy:438,frameH:453,frameW:222};
-  /* on a phone the photo is shown zoomed out (MOBILE_VIEW photo pixels across) so the phone reads in its setting */
-  var MOBILE_VIEW=window.__heroView||820,sceneEl=stage&&stage.parentNode;
+  /* on a phone the photo is there for the spa setting, not to be used: shown zoomed out, MOBILE_VIEW photo pixels across */
+  var MOBILE_VIEW=window.__heroView||1300,sceneEl=stage&&stage.parentNode;
   function place(){if(!stage||!slot)return;
     var desk=window.innerWidth>900,ms=Math.min(1.21,heroEl.getBoundingClientRect().width/MOBILE_VIEW),band=Math.round(PH.h*ms);
     var want=desk?'':band+'px';if(sceneEl.style.height!==want)sceneEl.style.height=want;
@@ -374,7 +369,7 @@ footer .fl a:hover{color:var(--text)}
       var l0=Math.max(e1,cr+10),l1=Math.max(l0+120,fl-30);
       m={ea:pl>0?0:.12,la:.12,e0:pl,e1:e1,l0:l0,l1:l1,r1:pr<W?pr-160:PH.w*s+tx,r0:pr<W?pr:PH.w*s+tx,ta:pt>0?0:.3,t0:pt,t1:pt+170,b1:pb-150,b0:pb};}
     else{var t0=Math.max(pt,sc.top-hr.top),b0=Math.min(pb,sc.bottom-hr.top);
-      m={ea:1,la:1,e0:pl,e1:pl,l0:pl,l1:pl,r1:pr,r0:pr,ta:0,t0:t0,t1:t0+60,b1:b0-60,b0:b0};}
+      m={ea:1,la:1,e0:pl,e1:pl,l0:pl,l1:pl,r1:pr,r0:pr,ta:0,t0:t0,t1:t0+26,b1:b0-26,b0:b0};}
     photo.style.setProperty('--ea',m.ea);photo.style.setProperty('--la',m.la);photo.style.setProperty('--ta',m.ta);
     ['e0','e1','l0','l1','r1','r0'].forEach(function(k){photo.style.setProperty('--'+k,nx(m[k]));});
     ['t0','t1','b1','b0'].forEach(function(k){photo.style.setProperty('--'+k,ny(m[k]));});
