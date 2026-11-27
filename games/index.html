@@ -99,9 +99,12 @@ nav a.link:hover{color:var(--text)}
 .card .body{padding:8px 16px 8px 0}
 .card.text{grid-template-columns:1fr;padding:30px 34px}
 .card.text .body{padding:0;max-width:40em}
+.card.flip{grid-template-columns:.9fr 1.1fr}
+.card.flip .art{order:2}
+.card.flip .body{padding:8px 0 8px 16px}
 .card h3{font-size:34px;font-weight:600;line-height:1.05;margin-top:16px}
 .card p{color:var(--text-muted);margin-top:12px}
-@media (max-width:820px){.card{grid-template-columns:1fr;gap:22px}.card .body{padding:0 8px 12px}.card.text{padding:24px 22px}}
+@media (max-width:820px){.card,.card.flip{grid-template-columns:1fr;gap:22px}.card .body,.card.flip .body{padding:0 8px 12px}.card.flip .art{order:0}.card.text{padding:24px 22px}}
 
 /* cta */
 .cta{text-align:center;overflow:hidden;padding:60px 0 200px}
@@ -176,7 +179,8 @@ footer a:hover{color:var(--text)}
           <div class="tags"><span>Sports</span><span>3D</span><span>Browser</span></div>
         </div>
       </article>
-      <article class="card text reveal" id="crwl">
+      <article class="card flip reveal" id="crwl">
+        <figure class="art"><img src="/assets/games/crwl.webp" width="1063" height="664" loading="lazy" alt="CRWL screenshot: a pale roach nymph weaving through glowing eggs between two fleshy glands"></figure>
         <div class="body">
           <span class="pill dev"><i></i>In development · Mobile</span>
           <h3>CRWL</h3>
