@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tidewire Games</title>
+<meta name="description" content="Games from Tidewire: Tidewire, a cyberpunk colony sim on a drowning island; CRWL, a bullet-hell roach run for your thumb; and Dublin Street Hockey.">
+<meta name="theme-color" content="#000a21">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tidewire.ai/games/">
+<meta property="og:title" content="Tidewire Games">
+<meta property="og:description" content="A cyberpunk colony sim, a roach run for your thumb, and 90s street hockey. Playable as they're ready.">
+<link rel="canonical" href="https://tidewire.ai/games/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23000a21'/%3E%3Cpath d='M8 36c8-14 16-14 24 0s16 14 24 0' fill='none' stroke='%2350f2fc' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Figtree:wght@400;500;600&family=Silkscreen:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as the tidewire.ai home page: logo navy, white, cyan, blue only. */
+:root{--bg:#000a21;--surface:#081633;--surface-raised:#0f2147;--line:#1a2c55;--control-border:#5e77ae;--text:#f6f8fd;--text-muted:#9faed0;--spark:#50f2fc;--on-spark:#000a21;--blue:#81a6fd;--glow-spark:0 0 20px rgba(80,242,252,.40);
+--font-display:Quicksand,"Nunito",system-ui,sans-serif;--font-sans:Figtree,system-ui,-apple-system,"Segoe UI",sans-serif}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:400 17px/1.65 var(--font-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--spark)}
+:focus-visible{outline:2px solid var(--spark);outline-offset:3px}
+.wrap{max-width:1040px;margin:0 auto;padding:0 32px}
+@media (max-width:520px){.wrap{padding:0 22px}}
+h1,h2,h3{font-family:var(--font-display);font-weight:500;letter-spacing:-.01em;margin:0;text-wrap:balance}
+p{margin:0}
+section{position:relative}
+.btn{display:inline-flex;align-items:center;height:52px;padding:0 28px;border-radius:999px;background:var(--spark);color:var(--on-spark);font:600 16px/1 var(--font-sans);text-decoration:none;box-shadow:var(--glow-spark);transition:box-shadow .15s}
+.btn:hover{box-shadow:0 0 30px rgba(80,242,252,.55)}
+.btn.ghost{background:transparent;color:var(--text);border:1px solid var(--control-border);box-shadow:none}
+.btn.ghost:hover{border-color:var(--spark)}
+.afterglow{position:absolute;inset:0;pointer-events:none;background:radial-gradient(640px 400px at 78% 30%,rgba(129,166,253,.12),transparent 70%),radial-gradient(560px 360px at 20% 80%,rgba(80,242,252,.08),transparent 70%)}
+.ribbon svg{display:block;width:100%;height:100%;overflow:visible}
+.glow-layer{opacity:.6}
+
+nav{position:absolute;top:0;left:0;right:0;z-index:5}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;height:96px}
+nav .logo img{height:28px;width:auto;display:block}
+nav a.link{color:var(--text-muted);text-decoration:none;font-weight:500}
+nav a.link:hover{color:var(--text)}
+
+/* hero */
+.hero{padding:170px 0 160px;overflow:hidden}
+@media (max-width:520px){.hero{padding:150px 0 140px}}
+.hero .wrap{position:relative;text-align:center}
+.hero p{font-size:clamp(18px,2vw,21px);color:var(--text-muted);max-width:30em;margin:26px auto 0}
+
+/* "fried hacker" title: the games' Silkscreen pixel face, a flatline-style power-on, then a burnt-in glitch.
+   Cyan and blue only, to stay inside the logo's colours. */
+.fried{position:relative;display:inline-block;font:700 clamp(64px,11vw,136px)/1 "Silkscreen",ui-monospace,"Courier New",monospace;letter-spacing:.04em;text-transform:uppercase;color:#f6f8fd;padding:0 .12em;
+  -webkit-mask-image:repeating-linear-gradient(to bottom,#000 0 3px,rgba(0,0,0,.5) 3px 5px);mask-image:repeating-linear-gradient(to bottom,#000 0 3px,rgba(0,0,0,.5) 3px 5px);
+  text-shadow:0 0 6px rgba(80,242,252,.75),0 0 22px rgba(80,242,252,.45),0 0 48px rgba(129,166,253,.35);
+  animation:frOn .9s linear both,frFlick .45s steps(1) .9s both,frHum 2.4s ease-in-out 1.35s infinite alternate}
+.fried::before,.fried::after{content:attr(data-text);position:absolute;inset:0;pointer-events:none;text-shadow:none}
+.fried::before{color:#50f2fc;transform:translate(-4px,0);mix-blend-mode:screen;opacity:.85;clip-path:inset(0 0 62% 0);animation:frSliceA 3.6s steps(1) 1.4s infinite}
+.fried::after{color:#81a6fd;transform:translate(4px,0);mix-blend-mode:screen;opacity:.85;clip-path:inset(58% 0 0 0);animation:frSliceB 3.6s steps(1) 1.4s infinite}
+@keyframes frOn{0%{opacity:0;clip-path:inset(48% 0 48% 0);transform:scale(.7);filter:brightness(3)}60%{opacity:1;clip-path:inset(30% 0 30% 0);filter:brightness(2)}100%{opacity:1;clip-path:inset(0 0 0 0);transform:none;filter:none}}
+@keyframes frFlick{0%,25%,60%{opacity:1}12%,40%,75%{opacity:.15}100%{opacity:1}}
+@keyframes frHum{to{text-shadow:0 0 4px rgba(80,242,252,.55),0 0 14px rgba(80,242,252,.3),0 0 32px rgba(129,166,253,.25)}}
+@keyframes frSliceA{0%{clip-path:inset(0 0 62% 0);transform:translate(-4px,0)}6%{clip-path:inset(18% 0 52% 0);transform:translate(-12px,0)}9%{clip-path:inset(70% 0 8% 0);transform:translate(8px,0)}12%{clip-path:inset(0 0 62% 0);transform:translate(-4px,0)}58%{clip-path:inset(40% 0 44% 0);transform:translate(10px,0)}61%{clip-path:inset(0 0 62% 0);transform:translate(-4px,0)}}
+@keyframes frSliceB{0%{clip-path:inset(58% 0 0 0);transform:translate(4px,0)}6%{clip-path:inset(46% 0 30% 0);transform:translate(14px,0)}9%{clip-path:inset(8% 0 76% 0);transform:translate(-9px,0)}12%{clip-path:inset(58% 0 0 0);transform:translate(4px,0)}58%{clip-path:inset(62% 0 18% 0);transform:translate(-10px,0)}61%{clip-path:inset(58% 0 0 0);transform:translate(4px,0)}}
+.hero-ribbon{position:absolute;left:-60px;right:-60px;bottom:0;height:120px;pointer-events:none}
+
+/* status pill */
+.pill{display:inline-flex;align-items:center;gap:8px;height:30px;padding:0 13px;border-radius:99px;background:var(--surface-raised);border:1px solid var(--line);font:600 12.5px/1 var(--font-sans);white-space:nowrap;color:var(--text)}
+.pill i{width:7px;height:7px;border-radius:50%;background:var(--spark);box-shadow:var(--glow-spark)}
+.pill.dev i{background:var(--blue);box-shadow:0 0 12px rgba(129,166,253,.5)}
+.tags{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:22px;font:500 14px/1.3 var(--font-sans);color:var(--text-muted)}
+.tags span{display:inline-flex;align-items:center;gap:8px}
+.tags span+span::before{content:"";width:4px;height:4px;border-radius:50%;background:var(--line);margin-right:10px}
+
+/* featured */
+.featured{padding:40px 0 70px}
+.feature{display:grid;grid-template-columns:1fr;gap:34px;background:var(--surface);border:1px solid var(--line);border-radius:28px;padding:22px;box-shadow:inset 0 1px 0 rgba(246,248,253,.05)}
+.feature .copy{padding:0 18px 18px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:8px 56px;align-items:start}
+.feature .copy .head{grid-row:span 2}
+.feature .copy .side{display:flex;flex-direction:column;align-items:flex-start}
+@media (max-width:860px){.feature .copy{grid-template-columns:1fr}}
+.feature h2{font-size:clamp(40px,5vw,60px);line-height:1.02;margin-top:20px}
+.feature p.lead{color:var(--text-muted);margin-top:6px;font-size:18px;max-width:34em}
+.feature p.hook{font:500 clamp(19px,2vw,22px)/1.4 var(--font-display);margin-top:22px;color:var(--text)}
+.feature .btn{margin-top:32px}
+@media (max-width:860px){.feature{gap:24px;padding:16px}.feature .copy{padding:0 6px 10px}}
+
+.art{position:relative;border-radius:20px;overflow:hidden;background:#030f2b;border:1px solid var(--line);aspect-ratio:36/25;margin:0}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+
+/* the other games */
+.more{padding:30px 0 120px}
+.more .label{font:600 14px/1 var(--font-sans);color:var(--text-muted);margin-bottom:26px;display:flex;align-items:center;gap:10px}
+.spark{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--spark);box-shadow:var(--glow-spark)}
+.rows{display:grid;gap:28px}
+.card{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:24px;padding:18px;box-shadow:inset 0 1px 0 rgba(246,248,253,.05)}
+.card .art{aspect-ratio:16/10}
+.card .body{padding:8px 16px 8px 0}
+.card.text{grid-template-columns:1fr;padding:30px 34px}
+.card.text .body{padding:0;max-width:40em}
+.card h3{font-size:34px;font-weight:600;line-height:1.05;margin-top:16px}
+.card p{color:var(--text-muted);margin-top:12px}
+@media (max-width:820px){.card{grid-template-columns:1fr;gap:22px}.card .body{padding:0 8px 12px}.card.text{padding:24px 22px}}
+
+/* cta */
+.cta{text-align:center;overflow:hidden;padding:60px 0 200px}
+.cta h2{font-size:clamp(32px,4.2vw,48px);line-height:1.12;margin:0 auto;max-width:16em}
+.cta p{color:var(--text-muted);margin:18px auto 0;max-width:30em}
+.cta .btn{margin-top:36px}
+.cta .afterglow{-webkit-mask-image:linear-gradient(to bottom,transparent,#000 35%);mask-image:linear-gradient(to bottom,transparent,#000 35%)}
+.cta-ribbon{position:absolute;left:-60px;right:-60px;bottom:30px;height:130px;pointer-events:none}
+
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:40px;padding-bottom:40px;border-top:1px solid var(--line);font-size:14px;color:var(--text-muted)}
+footer img{height:22px;display:block}
+footer .fl{display:flex;gap:22px;align-items:center}
+footer a{color:var(--text-muted);text-decoration:none}
+footer a:hover{color:var(--text)}
+
+/* motion */
+.ribbon .draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.2s cubic-bezier(.3,.7,.2,1)}
+.ribbon.in .draw{stroke-dashoffset:0}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.rows .reveal:nth-child(2){transition-delay:.12s}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}*{animation:none!important;transition:none!important}
+  .reveal{opacity:1!important;transform:none!important}
+  .fried,.fried::before,.fried::after{animation:none!important;opacity:1}
+  .ribbon .draw{stroke-dashoffset:0!important}
+}
+</style>
+</head>
+<body>
+<nav><div class="wrap"><a class="logo" href="/" aria-label="Tidewire home"><img src="/assets/tidewire-wordmark.webp" alt="tidewire" width="720" height="172"></a></div></nav>
+<main>
+<section class="hero">
+  <div class="afterglow"></div>
+  <div class="hero-ribbon ribbon" data-flow="1" data-ribbon='{"h":120,"amp":26,"waves":1.4,"phase":1.2,"stroke":9}'></div>
+  <div class="wrap">
+    <h1 class="fried" data-text="Games">Games</h1>
+    <p>The other half of Tidewire: strange, systems-heavy worlds, released as they become playable.</p>
+  </div>
+</section>
+
+<section class="featured" id="tidewire">
+  <div class="wrap">
+    <article class="feature reveal">
+      <figure class="art"><img src="/assets/games/tidewire.webp" width="1600" height="1111" alt="Tidewire screenshot: a young colony on the island, with farms, homes and the landing Crate, and a generator's card open on the left"></figure>
+      <div class="copy">
+        <div class="head">
+          <span class="pill"><i></i>Pre-alpha · Demo coming</span>
+          <h2>Tidewire</h2>
+          <p class="hook">The only way to rise is to merge.</p>
+        </div>
+        <div class="side">
+          <p class="lead">A cyberpunk colony sim on an island the tide is swallowing. Humans, robots, AIs that wear robot bodies and augmented people all scramble for power, food and scrap, while a corporation called HY.L3 watches over everything.</p>
+          <div class="tags"><span>Colony sim</span><span>Browser</span><span>Steam later</span></div>
+          <a class="btn" href="mailto:hello@tidewire.ai?subject=Tidewire%20demo">Get the demo when it's out</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section class="more">
+  <div class="wrap">
+    <p class="label"><span class="spark"></span>Also in the works</p>
+    <div class="rows">
+      <article class="card reveal" id="dublin-street-hockey">
+        <figure class="art"><img src="/assets/games/dublin-street-hockey.webp" width="1600" height="1000" loading="lazy" alt="Dublin Street Hockey screenshot: kids facing off on a suburban street lined with parked cars and autumn trees"></figure>
+        <div class="body">
+          <span class="pill dev"><i></i>In development · Browser</span>
+          <h3>Dublin Street Hockey</h3>
+          <p>Three-on-three street hockey on a 1990s suburban street. Pick your kid, unlock a special move, and clear the road when someone yells "Car!" Break a window and the game's over.</p>
+          <div class="tags"><span>Sports</span><span>3D</span><span>Browser</span></div>
+        </div>
+      </article>
+      <article class="card text reveal" id="crwl">
+        <div class="body">
+          <span class="pill dev"><i></i>In development · Mobile</span>
+          <h3>CRWL</h3>
+          <p>A roach run for your thumb. Hatch as a nymph and race out of the egg sac through bullet-hell patterns of glands, mucus and spinning legs. One hit and you're done.</p>
+          <div class="tags"><span>Runner</span><span>Bullet hell</span><span>Phone</span></div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="playtest">
+  <div class="afterglow"></div>
+  <div class="cta-ribbon ribbon" data-ribbon='{"h":130,"amp":28,"waves":1.2,"phase":3.6,"stroke":10}'></div>
+  <div class="wrap" style="position:relative">
+    <h2 class="reveal">Want to play before everyone else?</h2>
+    <p class="reveal">Playtesters get early builds and a say in what stays.</p>
+    <a class="btn reveal" href="mailto:hello@tidewire.ai?subject=Playtest">Email to join the playtest</a>
+  </div>
+</section>
+</main>
+<footer><div class="wrap"><a href="/" aria-label="Tidewire home"><img src="/assets/tidewire-wordmark.webp" alt="tidewire" width="720" height="172" style="width:auto"></a><span>© 2026 Tidewire LLC</span></div></footer>
+<script>
+(function(){
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ribbons: same generator as the home page */
+  function smooth(p){var d='M'+p[0][0].toFixed(1)+' '+p[0][1].toFixed(1);for(var i=0;i<p.length-1;i++){var a=p[i-1]||p[i],b=p[i],c=p[i+1],e=p[i+2]||c;d+=' C'+(b[0]+(c[0]-a[0])/6).toFixed(1)+' '+(b[1]+(c[1]-a[1])/6).toFixed(1)+' '+(c[0]-(e[0]-b[0])/6).toFixed(1)+' '+(c[1]-(e[1]-b[1])/6).toFixed(1)+' '+c[0].toFixed(1)+' '+c[1].toFixed(1);}return d;}
+  var n=0;
+  function ribbon(o){var w=1600,h=o.h,sw=o.stroke,g='rg'+(++n),f='rf'+n,pts=[];for(var i=0;i<=24;i++){pts.push([w*i/24,h/2+o.amp*Math.sin(o.phase+i/24*o.waves*Math.PI*2)]);}var d=smooth(pts);
+    return '<svg viewBox="0 0 '+w+' '+h+'" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="'+g+'" x1="0" x2="1"><stop offset="0" stop-color="#50f2fc"/><stop offset=".5" stop-color="#2adefe"/><stop offset="1" stop-color="#81a6fd"/></linearGradient><filter id="'+f+'" x="-10%" y="-100%" width="120%" height="300%"><feGaussianBlur stdDeviation="'+(sw*1.1)+'"/></filter></defs>'+
+    '<path class="glow-layer draw" pathLength="1" d="'+d+'" fill="none" stroke="url(#'+g+')" stroke-width="'+(sw*2.2)+'" stroke-linecap="round" filter="url(#'+f+')"/><path class="draw" pathLength="1" d="'+d+'" fill="none" stroke="url(#'+g+')" stroke-width="'+sw+'" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path class="draw" pathLength="1" d="'+d+'" fill="none" stroke="#fff" stroke-opacity=".35" stroke-width="'+Math.max(1,sw*.18)+'" stroke-linecap="round" transform="translate(0 '+(-sw*.22)+')" vector-effect="non-scaling-stroke"/></svg>';}
+  document.querySelectorAll('[data-ribbon]').forEach(function(e){e.innerHTML=ribbon(JSON.parse(e.getAttribute('data-ribbon')));});
+  document.querySelectorAll('[data-flow]').forEach(function(e){
+    if(reduce)return;var o=JSON.parse(e.getAttribute('data-ribbon')),paths=e.querySelectorAll('path'),w=1600,t0=null,omega=Math.PI*2/7;
+    function step(ts){if(t0===null)t0=ts;var t=(ts-t0)/1000,ph=o.phase-omega*t,pts=[];
+      for(var i=0;i<=32;i++){pts.push([w*i/32,o.h/2+o.amp*Math.sin(ph+i/32*o.waves*Math.PI*2)]);}
+      var d=smooth(pts);for(var k=0;k<paths.length;k++)paths[k].setAttribute('d',d);
+      if(e.getBoundingClientRect().bottom>-200)requestAnimationFrame(step);else{var watch=function(){if(e.getBoundingClientRect().bottom>-200){window.removeEventListener('scroll',watch);requestAnimationFrame(step);}};window.addEventListener('scroll',watch,{passive:true});}}
+    requestAnimationFrame(step);});
+
+  var els=document.querySelectorAll('.reveal,.ribbon');
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.12});els.forEach(function(e){io.observe(e);});}else{els.forEach(function(e){e.classList.add('in');});}
+})();
+</script>
+</body>
+</html>
